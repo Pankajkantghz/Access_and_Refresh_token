@@ -1,8 +1,8 @@
-class ApiResponse {
-  constructor(statusCode, data, messsage ="Success"){
-    this.statusCode=statusCode
-    this.data=data
-    this.messsage=messsage
-    this.success= statusCode < 400
+const asyncHandler = (requestHandler) => {
+  return (req, res, next) => {
+      Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err))
   }
 }
+
+
+export { asyncHandler }
